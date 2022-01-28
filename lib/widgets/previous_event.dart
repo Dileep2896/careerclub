@@ -1,9 +1,10 @@
-import 'package:careerclub/components/constants.dart';
-import 'package:careerclub/components/event_card.dart';
+import 'package:careerclub/widgets/event_card.dart';
 import 'package:flutter/material.dart';
 
-class UpcomingEvents extends StatelessWidget {
-  const UpcomingEvents({
+import '../styles/colors.dart';
+
+class PreviousEvent extends StatelessWidget {
+  const PreviousEvent({
     Key? key,
   }) : super(key: key);
 
@@ -17,6 +18,8 @@ class UpcomingEvents extends StatelessWidget {
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,7 +38,7 @@ class UpcomingEvents extends StatelessWidget {
                   child: const Padding(
                     padding: EdgeInsets.only(bottom: 5.0, top: 5.0),
                     child: Text(
-                      "Upcoming Events",
+                      "Previous Events",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -49,28 +52,28 @@ class UpcomingEvents extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   children: [
                     EventsCard(
-                      eventName: "Event 1",
+                      eventName: "Event 1 Done",
                       desc:
                           "This event gives you this and helps you learn this, participating in this event will increase your knowledge",
                       register: () {},
                       knowMore: () {},
-                      isPrev: false,
+                      isPrev: true,
                     ),
                     EventsCard(
-                      eventName: "Event 2",
+                      eventName: "Event 2 Done",
                       desc:
                           "This event gives you this and helps you learn this, participating in this event will increase your knowledge",
                       register: () {},
                       knowMore: () {},
-                      isPrev: false,
+                      isPrev: true,
                     ),
                     EventsCard(
-                      eventName: "Event 3",
+                      eventName: "Event 3 Done",
                       desc:
                           "This event gives you this and helps you learn this, participating in this event will increase your knowledge",
                       register: () {},
                       knowMore: () {},
-                      isPrev: false,
+                      isPrev: true,
                     ),
                   ],
                 ),

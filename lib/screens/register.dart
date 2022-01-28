@@ -1,14 +1,16 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe
-import 'package:careerclub/components/loading_dialog.dart';
-import 'package:careerclub/screens/bottom_navigation.dart';
+import 'package:careerclub/utils/drawer_controller.dart';
+import 'package:careerclub/widgets/loading_dialog.dart';
+import 'package:careerclub/utils/bottom_navigation.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
-import '../components/constants.dart';
-import '../components/rounded_button.dart';
-import '../api/user_actions.dart';
+import '../models/constants.dart';
+import '../styles/colors.dart';
+import '../widgets/rounded_button.dart';
+import '../utils/user_actions.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -61,7 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
-  // function to validate the password matchings
+// function to validate the password matchings
   void validatePasswordsMatch() {
     if (rePassword != password) {
       isPasswordMatch = false;
@@ -70,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
-  // function to validate the password field
+// function to validate the password field
   void validatePasswordField() {
     setState(() {
       if (password.isEmpty) {
@@ -86,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  // function to validate the phone number
+// function to validate the phone number
   void validatePhone() {
     setState(() {
       if (phoneNumber.length != 10) {
@@ -97,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  // function to validate the srn number
+// function to validate the srn number
   void validateSRN() {
     setState(() {
       if (srn.length != 8) {
@@ -108,7 +110,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  // function to validate the name field
+// function to validate the name field
   void validateName() {
     setState(() {
       if (name.isEmpty) {
@@ -119,7 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  // function to validate the errors
+// function to validate the errors
   bool validateErrors() {
     if (isPasswordMatch == false ||
         isMail == false ||
@@ -375,7 +377,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   // ignore: avoid_print
                                   print(registerMessage);
                                   Navigator.pushNamed(
-                                      context, BottomNavigationScreen.id);
+                                      context, DrawerControllerScreen.id);
                                   setState(() {
                                     isLoading = false;
                                     isRegisterError = false;

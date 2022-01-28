@@ -1,5 +1,5 @@
-import 'package:careerclub/screens/bottom_navigation.dart';
 import 'package:careerclub/screens/start.dart';
+import 'package:careerclub/utils/drawer_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +33,6 @@ class _DesicionTreeState extends State<DesicionTree> {
     if (user == null) {
       return const StartScreen();
     }
-    return const BottomNavigationScreen();
+    return const DrawerControllerScreen();
   }
 }

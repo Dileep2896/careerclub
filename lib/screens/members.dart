@@ -1,6 +1,7 @@
-import 'package:careerclub/components/member_stream_builder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/member_stream_builder.dart';
 
 const String studentDocName = 'Members';
 const String profDocName = 'Prof_Members';

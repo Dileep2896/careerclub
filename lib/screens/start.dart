@@ -1,8 +1,9 @@
-import 'package:careerclub/components/constants.dart';
-import 'package:careerclub/components/rounded_button.dart';
+import 'package:careerclub/widgets/rounded_button.dart';
 import 'package:careerclub/screens/login.dart';
 import 'package:careerclub/screens/register.dart';
 import 'package:flutter/material.dart';
+
+import '../styles/colors.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);

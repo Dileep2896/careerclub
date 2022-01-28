@@ -1,6 +1,7 @@
 // ignore: must_be_immutable
-import 'package:careerclub/components/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../styles/colors.dart';
 
 class MembersCard extends StatelessWidget {
   MembersCard({

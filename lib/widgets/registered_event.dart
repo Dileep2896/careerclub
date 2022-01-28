@@ -1,9 +1,10 @@
-import 'package:careerclub/components/constants.dart';
-import 'package:careerclub/components/event_card.dart';
+import 'package:careerclub/widgets/start_event_card.dart';
 import 'package:flutter/material.dart';
 
-class PreviousEvent extends StatelessWidget {
-  const PreviousEvent({
+import '../styles/colors.dart';
+
+class RegisteredEvent extends StatelessWidget {
+  const RegisteredEvent({
     Key? key,
   }) : super(key: key);
 
@@ -37,7 +38,7 @@ class PreviousEvent extends StatelessWidget {
                   child: const Padding(
                     padding: EdgeInsets.only(bottom: 5.0, top: 5.0),
                     child: Text(
-                      "Previous Events",
+                      "Registered Events",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -47,34 +48,25 @@ class PreviousEvent extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    EventsCard(
-                      eventName: "Event 1 Done",
-                      desc:
-                          "This event gives you this and helps you learn this, participating in this event will increase your knowledge",
-                      register: () {},
-                      knowMore: () {},
-                      isPrev: true,
-                    ),
-                    EventsCard(
-                      eventName: "Event 2 Done",
-                      desc:
-                          "This event gives you this and helps you learn this, participating in this event will increase your knowledge",
-                      register: () {},
-                      knowMore: () {},
-                      isPrev: true,
-                    ),
-                    EventsCard(
-                      eventName: "Event 3 Done",
-                      desc:
-                          "This event gives you this and helps you learn this, participating in this event will increase your knowledge",
-                      register: () {},
-                      knowMore: () {},
-                      isPrev: true,
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: ListView(
+                    scrollDirection: Axis.vertical,
+                    children: [
+                      StartEventCard(
+                        eventName: "Event 1",
+                        time: 454545,
+                      ),
+                      StartEventCard(
+                        eventName: "Event 2",
+                        time: 505050,
+                      ),
+                      StartEventCard(
+                        eventName: "Event 3",
+                        time: 999999,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

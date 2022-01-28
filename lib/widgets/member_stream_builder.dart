@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../screens/members_complete_info.dart';
-import 'loading_dialog.dart';
-import 'member_card.dart';
+import '../widgets/loading_dialog.dart';
+import '../widgets/member_card.dart';
 
 // ignore: must_be_immutable
 class MemberStreamBuilder extends StatelessWidget {

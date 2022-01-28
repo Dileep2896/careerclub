@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-const primaryColor = Color(0xff00c2cb);
-const secondaryColor = Color(0xffc3edef);
-const darkColor = Color(0xff293039);
+import '../styles/colors.dart';
 
 const kSendButtonTextStyle = TextStyle(
   color: Colors.blue,

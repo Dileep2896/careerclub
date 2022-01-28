@@ -1,5 +1,6 @@
-import 'package:careerclub/components/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../styles/colors.dart';
 
 // ignore: must_be_immutable
 class EventsCard extends StatelessWidget {
@@ -14,7 +15,9 @@ class EventsCard extends StatelessWidget {
 
   String eventName;
   String desc;
+  // ignore: prefer_typing_uninitialized_variables
   final register;
+  // ignore: prefer_typing_uninitialized_variables
   final knowMore;
   bool isPrev;
 

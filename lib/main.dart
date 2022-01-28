@@ -1,6 +1,6 @@
-import 'package:careerclub/components/desicion_tree.dart';
-import 'package:careerclub/components/loading_dialog.dart';
-import 'package:careerclub/screens/bottom_navigation.dart';
+import 'package:careerclub/utils/desicion_tree.dart';
+import 'package:careerclub/utils/drawer_controller.dart';
+import 'package:careerclub/widgets/loading_dialog.dart';
 import 'package:careerclub/screens/login.dart';
 import 'package:careerclub/screens/register.dart';
 import 'package:careerclub/screens/start.dart';
@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
         LoginScreen.id: (context) => const LoginScreen(),
         RegisterScreen.id: (context) => const RegisterScreen(),
         StartScreen.id: (context) => const StartScreen(),
-        BottomNavigationScreen.id: (context) => const BottomNavigationScreen(),
+        DrawerControllerScreen.id: (context) => const DrawerControllerScreen(),
         LoadingDialog.id: (context) => const LoadingDialog(),
       },
     );

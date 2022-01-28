@@ -1,5 +1,6 @@
-import 'package:careerclub/components/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../styles/colors.dart';
 
 // ignore: must_be_immutable
 class StartEventCard extends StatefulWidget {

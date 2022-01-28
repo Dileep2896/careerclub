@@ -1,7 +1,7 @@
-import 'package:careerclub/components/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../components/loading_dialog.dart';
+import '../styles/colors.dart';
+import '../widgets/loading_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MembersCompleteInfo extends StatefulWidget {

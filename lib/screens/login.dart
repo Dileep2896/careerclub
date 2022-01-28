@@ -1,13 +1,14 @@
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:careerclub/components/loading_dialog.dart';
-import 'package:careerclub/screens/bottom_navigation.dart';
+import 'package:careerclub/utils/drawer_controller.dart';
+import 'package:careerclub/widgets/loading_dialog.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
-import '../components/constants.dart';
-import '../components/rounded_button.dart';
-import '../api/user_actions.dart';
+import '../models/constants.dart';
+import '../styles/colors.dart';
+import '../utils/user_actions.dart';
+import '../widgets/rounded_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -182,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           loginMessage.then((value) {
                             if (value == null) {
                               Navigator.pushNamed(
-                                  context, BottomNavigationScreen.id);
+                                  context, DrawerControllerScreen.id);
                               setState(() {
                                 isLoading = false;
                                 isLoginError = false;

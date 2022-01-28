@@ -1,5 +1,6 @@
-import 'package:careerclub/components/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../styles/colors.dart';
 
 class UpdatesScreen extends StatefulWidget {
   const UpdatesScreen({Key? key}) : super(key: key);

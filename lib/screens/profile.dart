@@ -1,10 +1,11 @@
-import 'package:careerclub/components/constants.dart';
-import 'package:careerclub/components/desicion_tree.dart';
-import 'package:careerclub/components/loading_dialog.dart';
-import 'package:careerclub/components/rounded_button.dart';
+import 'package:careerclub/utils/desicion_tree.dart';
+import 'package:careerclub/widgets/loading_dialog.dart';
+import 'package:careerclub/widgets/rounded_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../styles/colors.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
