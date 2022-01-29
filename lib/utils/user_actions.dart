@@ -65,3 +65,22 @@ Future<String?> login(
     return e.message;
   }
 }
+
+Future<DocumentSnapshot<Object?>?> getUserData() async {
+  String uid = FirebaseAuth.instance.currentUser!.uid;
+  DocumentSnapshot? documentSnapshots;
+  await FirebaseFirestore.instance
+      .collection('UserData')
+      .doc(uid)
+      .get()
+      .then((DocumentSnapshot documentSnapshot) {
+    if (documentSnapshot.exists) {
+      // ignore: avoid_print
+      documentSnapshots = documentSnapshot;
+    } else {
+      // ignore: avoid_print
+      documentSnapshots = null;
+    }
+  });
+  return documentSnapshots;
+}

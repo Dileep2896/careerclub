@@ -1,4 +1,11 @@
+import 'package:careerclub/screens/event_registered.dart';
+import 'package:careerclub/screens/members.dart';
+import 'package:careerclub/screens/profile.dart';
+import 'package:careerclub/screens/register.dart';
+import 'package:careerclub/utils/bottom_navigation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../styles/colors.dart';
 
@@ -61,3 +68,21 @@ var kTextFieldDecoration = InputDecoration(
     ),
   ),
 );
+
+List<Map> drawerItems = [
+  {
+    'icon': CupertinoIcons.group,
+    'title': 'Members Info',
+    'function': MembersInfoScreen.id
+  },
+  {
+    'icon': CupertinoIcons.profile_circled,
+    'title': 'Profile',
+    'function': ProfileScreen.id,
+  },
+  {
+    'icon': CupertinoIcons.settings,
+    'title': 'Settings',
+    'function': ProfileScreen.id,
+  },
+];

@@ -1,6 +1,5 @@
-import 'package:careerclub/utils/desicion_tree.dart';
+import 'package:careerclub/utils/user_actions.dart';
 import 'package:careerclub/widgets/loading_dialog.dart';
-import 'package:careerclub/widgets/rounded_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,34 +16,30 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String uid = FirebaseAuth.instance.currentUser!.uid;
   DocumentSnapshot? documentSnapshot;
-
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    FirebaseFirestore.instance
-        .collection('UserData')
-        .doc(uid)
-        .get()
-        .then((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.exists) {
-        // ignore: avoid_print
-        print(documentSnapshot.get('phoneNumber'));
-        setState(() {
-          this.documentSnapshot = documentSnapshot;
-          _isLoading = false;
-        });
-      } else {
-        // ignore: avoid_print
-        print('Document does not exist on the database');
-        setState(() {
-          _isLoading = true;
-        });
-      }
-    });
+    Future<DocumentSnapshot<Object?>?> documentSnapshot = getUserData();
+    documentSnapshot.then(
+      (value) => {
+        if (value != null)
+          {
+            setState(() {
+              this.documentSnapshot = value;
+              _isLoading = false;
+            })
+          }
+        else
+          {
+            setState(() {
+              _isLoading = true;
+            })
+          }
+      },
+    );
   }
 
   @override
@@ -94,16 +89,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(
                       height: 30,
                     ),
-                    RoundedButton(
-                      onPressed: () async {
-                        await FirebaseAuth.instance.signOut();
-                        Navigator.pushReplacementNamed(
-                            context, DesicionTree.id);
-                      },
-                      color: Colors.redAccent,
-                      title: "Logout",
-                      titleColor: Colors.white,
-                    )
                   ],
                 ),
               ),

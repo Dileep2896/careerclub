@@ -1,3 +1,6 @@
+import 'package:careerclub/screens/event_past.dart';
+import 'package:careerclub/screens/members.dart';
+import 'package:careerclub/screens/profile.dart';
 import 'package:careerclub/utils/desicion_tree.dart';
 import 'package:careerclub/utils/drawer_controller.dart';
 import 'package:careerclub/widgets/loading_dialog.dart';
@@ -43,6 +46,8 @@ class _MyAppState extends State<MyApp> {
         StartScreen.id: (context) => const StartScreen(),
         DrawerControllerScreen.id: (context) => const DrawerControllerScreen(),
         LoadingDialog.id: (context) => const LoadingDialog(),
+        ProfileScreen.id: (context) => const ProfileScreen(),
+        MembersInfoScreen.id: (context) => const MembersInfoScreen(),
       },
     );
   }

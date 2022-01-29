@@ -9,6 +9,8 @@ const String profDocName = 'Prof_Members';
 class MembersInfoScreen extends StatefulWidget {
   const MembersInfoScreen({Key? key}) : super(key: key);
 
+  static String id = "member_info_screen";
+
   @override
   _MembersInfoScreenState createState() => _MembersInfoScreenState();
 }
