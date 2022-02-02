@@ -57,7 +57,7 @@ class PreviousEvent extends StatelessWidget {
                           "This event gives you this and helps you learn this, participating in this event will increase your knowledge",
                       register: () {},
                       knowMore: () {},
-                      isPrev: true,
+                      isReg: true,
                     ),
                     EventsCard(
                       eventName: "Event 2 Done",
@@ -65,7 +65,7 @@ class PreviousEvent extends StatelessWidget {
                           "This event gives you this and helps you learn this, participating in this event will increase your knowledge",
                       register: () {},
                       knowMore: () {},
-                      isPrev: true,
+                      isReg: true,
                     ),
                     EventsCard(
                       eventName: "Event 3 Done",
@@ -73,7 +73,7 @@ class PreviousEvent extends StatelessWidget {
                           "This event gives you this and helps you learn this, participating in this event will increase your knowledge",
                       register: () {},
                       knowMore: () {},
-                      isPrev: true,
+                      isReg: true,
                     ),
                   ],
                 ),

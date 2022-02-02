@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../styles/colors.dart';
 
+// ignore: must_be_immutable
 class NoEventsWidget extends StatelessWidget {
   NoEventsWidget({
     required this.eventName,
@@ -15,12 +16,9 @@ class NoEventsWidget extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width / 1.3,
       height: 50,
-      decoration: BoxDecoration(
-        color: primaryColor,
-        border: Border.all(
-          color: primaryColor,
-        ),
-        borderRadius: const BorderRadius.all(
+      decoration: const BoxDecoration(
+        color: darkColor,
+        borderRadius: BorderRadius.all(
           Radius.circular(20),
         ),
       ),

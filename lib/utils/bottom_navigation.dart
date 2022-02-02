@@ -1,10 +1,11 @@
-import 'package:careerclub/screens/event_past.dart';
+import 'package:careerclub/screens/event_fav.dart';
 import 'package:careerclub/screens/event_registered.dart';
 import 'package:careerclub/screens/event_upcoming.dart';
 import 'package:careerclub/utils/user_actions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../styles/colors.dart';
 import '../widgets/loading_dialog.dart';
@@ -21,9 +22,15 @@ class BottomNavigationScreen extends StatefulWidget {
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = const <Widget>[
-    EventRegisteredScreen(),
     EventUpcomingScreen(),
-    EventPastScreen(),
+    EventRegisteredScreen(),
+    FavEventScreen(),
+  ];
+
+  final List<Color> _navColors = const <Color>[
+    Colors.blueAccent,
+    darkColor,
+    Colors.pinkAccent
   ];
 
   DocumentSnapshot? documentSnapshot;
@@ -50,6 +57,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           }
       },
     );
+    onItemTap(1);
   }
 
   void onItemTap(int index) {
@@ -87,15 +95,12 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     return _isLoading
         ? const LoadingDialog()
         : GestureDetector(
-            onVerticalDragStart: (DragStartDetails details) {
-              _drawerOpen();
-            },
             onTap: () {
               _drawerClose();
             },
             child: AnimatedContainer(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: secondaryColor,
                 borderRadius: isDrawerOpen
                     ? BorderRadius.circular(40)
                     : BorderRadius.circular(0),
@@ -105,20 +110,20 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 yOffset,
                 0,
               )..scale(scaleFactor),
+              curve: Curves.easeIn,
               duration: const Duration(milliseconds: 250),
-              child:
-                  // Scaffold(
-                  //   backgroundColor: Colors.white,
-                  //   body:
-                  Column(
+              child: Column(
                 children: [
                   const SizedBox(
                     height: 50,
                   ),
                   Container(
-                    color: Colors.white,
+                    color: secondaryColor,
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0,
+                        vertical: 30.0,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -129,6 +134,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                                   },
                                   icon: const Icon(
                                     Icons.arrow_back_ios,
+                                    color: darkColor,
                                   ),
                                 )
                               : IconButton(
@@ -137,6 +143,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                                   },
                                   icon: const Icon(
                                     Icons.menu,
+                                    color: darkColor,
                                   ),
                                 ),
                           Row(
@@ -144,13 +151,19 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  const Text("Welcome"),
+                                  const Text(
+                                    "Welcome",
+                                    style: TextStyle(
+                                      color: darkColor,
+                                    ),
+                                  ),
                                   Text(
                                     documentSnapshot?.get("fName"),
                                     style: const TextStyle(
-                                        color: primaryColor,
-                                        fontFamily: 'Pacifico',
-                                        fontSize: 16),
+                                      color: darkColor,
+                                      fontFamily: 'Pacifico',
+                                      fontSize: 16,
+                                    ),
                                   )
                                 ],
                               ),
@@ -173,51 +186,36 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                           topRight: Radius.circular(40),
                         ),
                         child: Container(
-                          color: Colors.grey.shade200,
+                          color: primaryColor,
                           child: _widgetOptions.elementAt(
                             _selectedIndex,
                           ),
                         ),
                       ),
-                      bottomNavigationBar: ClipRRect(
-                        borderRadius: isDrawerOpen
-                            ? const BorderRadius.only(
-                                bottomLeft: Radius.circular(40),
-                                bottomRight: Radius.circular(40),
-                              )
-                            : BorderRadius.zero,
-                        child: BottomNavigationBar(
-                          selectedItemColor: primaryColor,
-                          unselectedItemColor: darkColor,
-                          items: const [
-                            BottomNavigationBarItem(
-                              // backgroundColor: primaryColor,
-                              icon: Icon(
-                                FontAwesomeIcons.calendarCheck,
-                                size: 18,
-                              ),
-                              label: "Registered",
-                            ),
-                            BottomNavigationBarItem(
-                              // backgroundColor: primaryColor,
-                              icon: Icon(
-                                FontAwesomeIcons.calendarPlus,
-                                size: 18,
-                              ),
-                              label: "Upcoming",
-                            ),
-                            BottomNavigationBarItem(
-                              // backgroundColor: primaryColor,
-                              icon: Icon(
-                                FontAwesomeIcons.calendarMinus,
-                                size: 18,
-                              ),
-                              label: "Past",
-                            ),
-                          ],
-                          currentIndex: _selectedIndex,
-                          onTap: onItemTap,
-                        ),
+                      bottomNavigationBar: CurvedNavigationBar(
+                        color: darkColor,
+                        height: 70,
+                        backgroundColor: primaryColor,
+                        buttonBackgroundColor: _navColors[_selectedIndex],
+                        items: const [
+                          Icon(
+                            Icons.add,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                          Icon(
+                            Icons.check,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                          Icon(
+                            CupertinoIcons.heart_fill,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                        ],
+                        onTap: onItemTap,
+                        index: _selectedIndex,
                       ),
                     ),
                   ),

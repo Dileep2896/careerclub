@@ -117,6 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 15.0,
                   ),
+                  // ----------------- Password Text Fiels ----------------- //
                   TextField(
                     obscureText: isPasswordVisible ? true : false,
                     onChanged: (value) {
@@ -171,8 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       } else {
                         if (validateErrors()) {
                           // Login
-                          // ignore: avoid_print
-                          print("Login");
+
                           setState(() {
                             isLoading = true;
                           });
@@ -182,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                           loginMessage.then((value) {
                             if (value == null) {
-                              Navigator.pushNamed(
+                              Navigator.pushReplacementNamed(
                                   context, DrawerControllerScreen.id);
                               setState(() {
                                 isLoading = false;
@@ -208,6 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     color: primaryColor,
                     title: "Log In",
+                    titleColor: Colors.white,
                   )
                 ],
               ),

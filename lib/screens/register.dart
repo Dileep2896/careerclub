@@ -1,7 +1,6 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe
 import 'package:careerclub/utils/drawer_controller.dart';
 import 'package:careerclub/widgets/loading_dialog.dart';
-import 'package:careerclub/utils/bottom_navigation.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -376,7 +375,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 if (error == null) {
                                   // ignore: avoid_print
                                   print(registerMessage);
-                                  Navigator.pushNamed(
+                                  Navigator.pushReplacementNamed(
                                       context, DrawerControllerScreen.id);
                                   setState(() {
                                     isLoading = false;
@@ -400,7 +399,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                         color: primaryColor,
                         title: "Register",
-                        titleColor: darkColor,
+                        titleColor: Colors.white,
                       ),
                     ],
                   ),

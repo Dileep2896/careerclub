@@ -4,6 +4,9 @@ import '../styles/colors.dart';
 import '../widgets/loading_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../widgets/member_info_container.dart';
+
+// ignore: must_be_immutable
 class MembersCompleteInfo extends StatefulWidget {
   MembersCompleteInfo({
     Key? key,
@@ -64,7 +67,7 @@ class _MembersCompleteInfoState extends State<MembersCompleteInfo> {
       return const LoadingDialog();
     } else {
       return Scaffold(
-        backgroundColor: primaryColor,
+        backgroundColor: darkColor,
         body: SafeArea(
           child: Column(
             children: [
@@ -96,12 +99,9 @@ class _MembersCompleteInfoState extends State<MembersCompleteInfo> {
                     horizontal: 30,
                   ),
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: secondaryColor,
-                      border: Border.all(
-                        color: secondaryColor,
-                      ),
-                      borderRadius: const BorderRadius.all(
+                    decoration: const BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.all(
                         Radius.circular(20),
                       ),
                     ),
@@ -166,48 +166,51 @@ class _MembersCompleteInfoState extends State<MembersCompleteInfo> {
                         ),
                         Material(
                           type: MaterialType.transparency,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                splashColor: Colors.pinkAccent.shade100,
-                                splashRadius: 18,
-                                onPressed: () {
-                                  // _launchURL();
-                                },
-                                icon: const Icon(
-                                  FontAwesomeIcons.instagram,
-                                  color: Colors.pinkAccent,
+                          child: Container(
+                            color: Colors.white,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  splashColor: Colors.pinkAccent.shade100,
+                                  splashRadius: 18,
+                                  onPressed: () {
+                                    // _launchURL();
+                                  },
+                                  icon: const Icon(
+                                    FontAwesomeIcons.instagram,
+                                    color: Colors.pinkAccent,
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                splashRadius: 18,
-                                splashColor: Colors.blueAccent.shade100,
-                                onPressed: () {},
-                                icon: const Icon(
-                                  FontAwesomeIcons.linkedin,
-                                  color: Colors.blueAccent,
+                                IconButton(
+                                  splashRadius: 18,
+                                  splashColor: Colors.blueAccent.shade100,
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    FontAwesomeIcons.linkedin,
+                                    color: Colors.blueAccent,
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                splashRadius: 18,
-                                splashColor: Colors.black12,
-                                onPressed: () {},
-                                icon: const Icon(
-                                  FontAwesomeIcons.github,
-                                  color: Colors.black,
+                                IconButton(
+                                  splashRadius: 18,
+                                  splashColor: Colors.black12,
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    FontAwesomeIcons.github,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                splashRadius: 18,
-                                splashColor: Colors.blue.shade100,
-                                onPressed: () {},
-                                icon: const Icon(
-                                  FontAwesomeIcons.facebook,
-                                  color: Colors.blue,
-                                ),
-                              )
-                            ],
+                                IconButton(
+                                  splashRadius: 18,
+                                  splashColor: Colors.blue.shade100,
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    FontAwesomeIcons.facebook,
+                                    color: Colors.blue,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         )
                       ],
@@ -220,49 +223,5 @@ class _MembersCompleteInfoState extends State<MembersCompleteInfo> {
         ),
       );
     }
-  }
-}
-
-// ignore: must_be_immutable
-class InfoContainer extends StatelessWidget {
-  InfoContainer({
-    Key? key,
-    required this.information,
-    required this.subject,
-    this.fontSize = 16,
-  }) : super(key: key);
-
-  String information;
-  String subject;
-  double fontSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width / 1.6,
-      decoration: BoxDecoration(
-        color: primaryColor,
-        border: Border.all(
-          color: primaryColor,
-        ),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            information,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontSize: fontSize,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
   }
 }

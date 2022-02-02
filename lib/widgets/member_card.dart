@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../styles/colors.dart';
 
+// ignore: must_be_immutable
 class MembersCard extends StatelessWidget {
   MembersCard({
     Key? key,
@@ -27,12 +28,9 @@ class MembersCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
-          decoration: BoxDecoration(
-            color: primaryColor,
-            border: Border.all(
-              color: primaryColor,
-            ),
-            borderRadius: const BorderRadius.all(
+          decoration: const BoxDecoration(
+            color: darkColor,
+            borderRadius: BorderRadius.all(
               Radius.circular(10),
             ),
           ),
@@ -41,7 +39,7 @@ class MembersCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: CircleAvatar(
-                  backgroundColor: Colors.white,
+                  backgroundColor: darkColor,
                   radius: 20,
                   backgroundImage: AssetImage(
                     image,
@@ -66,7 +64,7 @@ class MembersCard extends StatelessWidget {
                       Text(
                         name,
                         style: const TextStyle(
-                          color: secondaryColor,
+                          color: Colors.white54,
                           fontSize: 16,
                         ),
                       ),

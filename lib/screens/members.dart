@@ -1,3 +1,4 @@
+import 'package:careerclub/styles/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,9 @@ class _MembersInfoScreenState extends State<MembersInfoScreen> {
       initialIndex: 0,
       length: 2,
       child: Scaffold(
+        backgroundColor: primaryColor,
         appBar: AppBar(
+          backgroundColor: darkColor,
           title: const Text(
             "Meet Our Team",
             style: TextStyle(

@@ -1,6 +1,6 @@
-import 'package:careerclub/screens/event_past.dart';
 import 'package:careerclub/screens/members.dart';
 import 'package:careerclub/screens/profile.dart';
+import 'package:careerclub/screens/settings.dart';
 import 'package:careerclub/utils/desicion_tree.dart';
 import 'package:careerclub/utils/drawer_controller.dart';
 import 'package:careerclub/widgets/loading_dialog.dart';
@@ -33,6 +33,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ThemeData().colorScheme.copyWith(
               primary: primaryColor,
@@ -48,6 +49,7 @@ class _MyAppState extends State<MyApp> {
         LoadingDialog.id: (context) => const LoadingDialog(),
         ProfileScreen.id: (context) => const ProfileScreen(),
         MembersInfoScreen.id: (context) => const MembersInfoScreen(),
+        SettingsScreen.id: (context) => const SettingsScreen(),
       },
     );
   }

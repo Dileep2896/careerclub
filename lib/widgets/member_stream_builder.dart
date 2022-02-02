@@ -21,62 +21,59 @@ class MemberStreamBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: StreamBuilder(
-        stream: stream,
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Something went wrong');
-          }
+    return StreamBuilder(
+      stream: stream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return const Text('Something went wrong');
+        }
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const LoadingDialog();
-          }
-          return Padding(
-            padding: const EdgeInsets.only(
-              left: 15.0,
-              right: 15.0,
-              top: 10.0,
-            ),
-            child: ListView(
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data =
-                    document.data() as Map<String, dynamic>;
-                return MembersCard(
-                  name: data["name"],
-                  title: data["title"],
-                  image: 'images/' + data['image'],
-                  onPressed: () async {
-                    final bool? result = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MembersCompleteInfo(
-                          memberId: document.id,
-                          docName: studentDocName,
-                          isProfs: isProf,
-                        ),
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const LoadingDialog();
+        }
+        return Padding(
+          padding: const EdgeInsets.only(
+            left: 15.0,
+            right: 15.0,
+            top: 10.0,
+          ),
+          child: ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data() as Map<String, dynamic>;
+              return MembersCard(
+                name: data["name"],
+                title: data["title"],
+                image: 'images/' + data['image'],
+                onPressed: () async {
+                  final bool? result = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MembersCompleteInfo(
+                        memberId: document.id,
+                        docName: studentDocName,
+                        isProfs: isProf,
                       ),
+                    ),
+                  );
+                  if (result!) {
+                    Fluttertoast.showToast(
+                      msg:
+                          "Something Went Wrong, Please Try Again or Check your Internet Connection",
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 2,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 14.0,
                     );
-                    if (result!) {
-                      Fluttertoast.showToast(
-                        msg:
-                            "Something Went Wrong, Please Try Again or Check your Internet Connection",
-                        toastLength: Toast.LENGTH_LONG,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 2,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 14.0,
-                      );
-                    }
-                  },
-                );
-              }).toList(),
-            ),
-          );
-        },
-      ),
+                  }
+                },
+              );
+            }).toList(),
+          ),
+        );
+      },
     );
   }
 }

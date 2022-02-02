@@ -1,19 +1,22 @@
 import 'package:careerclub/styles/colors.dart';
-import 'package:careerclub/widgets/event_card.dart';
+import 'package:careerclub/widgets/no_event.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import '../widgets/no_event.dart';
 
-class EventRegisteredScreen extends StatefulWidget {
-  const EventRegisteredScreen({Key? key}) : super(key: key);
+import '../widgets/event_card.dart';
+
+class FavEventScreen extends StatefulWidget {
+  const FavEventScreen({Key? key}) : super(key: key);
+
+  static String id = "event_past_screen";
 
   @override
-  _EventRegisteredScreenState createState() => _EventRegisteredScreenState();
+  State<FavEventScreen> createState() => _FavEventScreenState();
 }
 
-class _EventRegisteredScreenState extends State<EventRegisteredScreen> {
+class _FavEventScreenState extends State<FavEventScreen> {
   int noOfCards = 1;
-  String eventName = "Registered";
+  String eventName = "Faviroate";
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +63,7 @@ class _EventRegisteredScreenState extends State<EventRegisteredScreen> {
                           desc: "This is an Event",
                           register: () {},
                           knowMore: () {},
-                          isReg: false,
+                          isReg: true,
                         ),
                       ),
                       Padding(
@@ -73,7 +76,7 @@ class _EventRegisteredScreenState extends State<EventRegisteredScreen> {
                           desc: "This is an Event",
                           register: () {},
                           knowMore: () {},
-                          isReg: false,
+                          isReg: true,
                         ),
                       ),
                     ],

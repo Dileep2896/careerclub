@@ -1,7 +1,6 @@
 import 'package:careerclub/utils/user_actions.dart';
 import 'package:careerclub/widgets/loading_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../styles/colors.dart';
@@ -47,19 +46,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return _isLoading
         ? const LoadingDialog()
         : Scaffold(
+            appBar: AppBar(
+              backgroundColor: darkColor,
+              title: const Text(
+                "Your Profile Informations",
+              ),
+            ),
+            backgroundColor: darkColor,
             body: SafeArea(
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 200.0,
+                      height: 250.0,
                       child: Image.asset(
-                        "images/logo.png",
+                        "images/career_club_logo.png",
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
                     ),
                     InfoContainer(
                       subject: "Name",
@@ -88,6 +91,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     const SizedBox(
                       height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            primary: Colors.yellowAccent,
+                          ),
+                          onPressed: () {},
+                          child: const Text(
+                            "Edit Profile",
+                          ),
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            primary: Colors.redAccent,
+                          ),
+                          onPressed: () {},
+                          child: const Text(
+                            "Delete Account",
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

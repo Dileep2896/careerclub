@@ -1,45 +1,19 @@
-import 'package:careerclub/screens/event_registered.dart';
 import 'package:careerclub/screens/members.dart';
 import 'package:careerclub/screens/profile.dart';
-import 'package:careerclub/screens/register.dart';
-import 'package:careerclub/utils/bottom_navigation.dart';
+import 'package:careerclub/screens/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../styles/colors.dart';
-
-const kSendButtonTextStyle = TextStyle(
-  color: Colors.blue,
-  fontWeight: FontWeight.bold,
-  fontSize: 18.0,
-);
-
-const kMessageTextFieldDecoration = InputDecoration(
-  contentPadding: EdgeInsets.symmetric(
-    vertical: 10.0,
-    horizontal: 20.0,
-  ),
-  hintText: 'Type your message here...',
-  hintStyle: TextStyle(color: Colors.blue),
-  border: InputBorder.none,
-);
-
-const kMessageContainerDecoration = BoxDecoration(
-  border: Border(
-    top: BorderSide(
-      color: Colors.black,
-      width: 2.0,
-    ),
-  ),
-);
 
 var kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
   hintStyle: const TextStyle(
     color: Colors.grey,
   ),
-  prefixIcon: const Icon(Icons.email),
+  prefixIcon: const Icon(
+    Icons.email,
+  ),
   labelText: 'Enter a Value',
   contentPadding: const EdgeInsets.symmetric(
     vertical: 8.0,
@@ -83,6 +57,6 @@ List<Map> drawerItems = [
   {
     'icon': CupertinoIcons.settings,
     'title': 'Settings',
-    'function': ProfileScreen.id,
+    'function': SettingsScreen.id,
   },
 ];

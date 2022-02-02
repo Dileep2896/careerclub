@@ -17,14 +17,19 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Material(
-        color: color,
-        borderRadius: BorderRadius.circular(20.0),
-        child: MaterialButton(
-          onPressed: onPressed,
-          minWidth: MediaQuery.of(context).size.width / 1.3,
-          height: 42.0,
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: color,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(20.0),
+            ),
+          ),
+        ),
+        onPressed: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
             title,
             style: TextStyle(

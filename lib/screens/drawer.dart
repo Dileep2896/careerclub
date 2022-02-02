@@ -18,60 +18,44 @@ class _DrawerScreenState extends State<DrawerScreen> {
     return Container(
       padding: const EdgeInsets.only(
         top: 50,
-        bottom: 50,
+        bottom: 20,
         left: 20,
       ),
-      color: primaryColor,
+      color: darkColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Stack(
-              children: [
-                Positioned(
-                  top: MediaQuery.of(context).size.width / 30,
-                  left: 50,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
-                      ),
-                    ),
-                    padding: const EdgeInsets.only(
-                      left: 10,
-                      right: 10,
-                      top: 2,
-                      bottom: 2,
-                    ),
-                    child: const Text(
-                      "Career Club",
-                      style: TextStyle(
-                        color: primaryColor,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+          Row(
+            children: const [
+              CircleAvatar(
+                radius: 22,
+                backgroundColor: primaryColor,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('images/career_club_logo.png'),
+                  radius: 20.0,
                 ),
-                const CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Colors.white,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('images/career_club_logo.png'),
-                    radius: 25.0,
-                  ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                "Career Club",
+                style: TextStyle(
+                  color: primaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           Column(
             children: drawerItems
                 .map(
                   (e) => TextButton(
+                    style: TextButton.styleFrom(
+                      primary: Colors.white,
+                    ),
                     onPressed: () {
                       Navigator.pushNamed(context, e['function']);
                     },
@@ -79,7 +63,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       children: [
                         Icon(
                           e['icon'],
-                          color: Colors.white54,
+                          color: Colors.white,
                         ),
                         const SizedBox(
                           width: 10,
@@ -87,7 +71,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         Text(
                           e['title'],
                           style: const TextStyle(
-                            color: Colors.white54,
+                            color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -108,10 +92,13 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 child: const Text(
                   "Logout",
                   style: TextStyle(
-                    color: Colors.white38,
+                    color: Colors.redAccent,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
+                ),
+                style: TextButton.styleFrom(
+                  primary: Colors.redAccent,
                 ),
               ),
             ],
