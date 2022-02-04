@@ -16,7 +16,7 @@ class FavEventScreen extends StatefulWidget {
 
 class _FavEventScreenState extends State<FavEventScreen> {
   int noOfCards = 1;
-  String eventName = "Faviroate";
+  String eventName = "FAVIROATE";
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +26,25 @@ class _FavEventScreenState extends State<FavEventScreen> {
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              color: darkColor,
-            ),
-            padding: const EdgeInsets.symmetric(
-              vertical: 10,
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 30,
+              bottom: 5,
             ),
             child: Text(
-              "$eventName Events",
+              "$eventName EVENTS",
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width / 1.2,
+            color: Colors.white,
+            height: 2,
           ),
           noOfCards >= 1
               ? Expanded(
@@ -56,7 +60,7 @@ class _FavEventScreenState extends State<FavEventScreen> {
                       Padding(
                         padding: const EdgeInsets.only(
                           bottom: 50.0,
-                          top: 30,
+                          top: 40,
                         ),
                         child: EventsCard(
                           eventName: "Event 1",
@@ -69,7 +73,7 @@ class _FavEventScreenState extends State<FavEventScreen> {
                       Padding(
                         padding: const EdgeInsets.only(
                           bottom: 50.0,
-                          top: 20,
+                          top: 40,
                         ),
                         child: EventsCard(
                           eventName: "Event 2",

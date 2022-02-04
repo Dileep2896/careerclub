@@ -13,7 +13,7 @@ class EventRegisteredScreen extends StatefulWidget {
 
 class _EventRegisteredScreenState extends State<EventRegisteredScreen> {
   int noOfCards = 1;
-  String eventName = "Registered";
+  String eventName = "REGISTERED";
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +23,25 @@ class _EventRegisteredScreenState extends State<EventRegisteredScreen> {
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              color: darkColor,
-            ),
-            padding: const EdgeInsets.symmetric(
-              vertical: 10,
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 30,
+              bottom: 5,
             ),
             child: Text(
-              "$eventName Events",
+              "$eventName EVENTS",
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width / 1.2,
+            color: Colors.white,
+            height: 2,
           ),
           noOfCards >= 1
               ? Expanded(
@@ -53,11 +57,12 @@ class _EventRegisteredScreenState extends State<EventRegisteredScreen> {
                       Padding(
                         padding: const EdgeInsets.only(
                           bottom: 50.0,
-                          top: 30,
+                          top: 40,
                         ),
                         child: EventsCard(
                           eventName: "Event 1",
-                          desc: "This is an Event",
+                          desc:
+                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing softwar",
                           register: () {},
                           knowMore: () {},
                           isReg: false,
@@ -66,7 +71,7 @@ class _EventRegisteredScreenState extends State<EventRegisteredScreen> {
                       Padding(
                         padding: const EdgeInsets.only(
                           bottom: 50.0,
-                          top: 20,
+                          top: 40,
                         ),
                         child: EventsCard(
                           eventName: "Event 2",

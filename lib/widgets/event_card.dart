@@ -52,14 +52,20 @@ class EventsCard extends StatelessWidget {
                   height: 5,
                 ),
                 RichText(
-                  overflow: TextOverflow.fade,
-                  strutStyle: const StrutStyle(fontSize: 12.0),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  strutStyle: const StrutStyle(
+                    fontSize: 12.0,
+                  ),
                   text: TextSpan(
                     style: const TextStyle(
                       color: Colors.white,
                     ),
                     text: desc,
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
               ],
             ),

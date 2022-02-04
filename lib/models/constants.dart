@@ -60,3 +60,5 @@ List<Map> drawerItems = [
     'function': SettingsScreen.id,
   },
 ];
+
+List<Map> tempCardInfo = [];
