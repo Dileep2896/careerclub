@@ -1,6 +1,6 @@
 import 'package:careerclub/widgets/rounded_button.dart';
-import 'package:careerclub/screens/login.dart';
-import 'package:careerclub/screens/register.dart';
+import 'package:careerclub/screens/authentication/login.dart';
+import 'package:careerclub/screens/authentication/register.dart';
 import 'package:flutter/material.dart';
 
 import '../styles/colors.dart';

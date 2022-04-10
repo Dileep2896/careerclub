@@ -1,14 +1,21 @@
-import 'package:careerclub/screens/event_fav.dart';
-import 'package:careerclub/screens/event_registered.dart';
-import 'package:careerclub/screens/event_upcoming.dart';
-import 'package:careerclub/utils/user_actions.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:careerclub/database/db.dart';
+import 'package:careerclub/models/event_model.dart';
+import 'package:careerclub/models/user_data_model.dart';
+import 'package:careerclub/screens/event_fav/event_fav.dart';
+import 'package:careerclub/screens/event_registered/event_registered.dart';
+import 'package:careerclub/screens/event_upcoming/event_upcoming.dart';
+import 'package:careerclub/screens/members_and_about/members.dart';
+import 'package:careerclub/screens/user/user_profile.dart';
+import 'package:careerclub/utils/desicion_tree.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../styles/colors.dart';
-import '../widgets/loading_dialog.dart';
+import '../widgets/drawer_list_tile.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   const BottomNavigationScreen({Key? key}) : super(key: key);
@@ -21,10 +28,22 @@ class BottomNavigationScreen extends StatefulWidget {
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int _selectedIndex = 0;
-  final List<Widget> _widgetOptions = const <Widget>[
-    EventUpcomingScreen(),
-    EventRegisteredScreen(),
-    FavEventScreen(),
+  final List<Widget> _widgetOptions = <Widget>[
+    StreamProvider<List<EventModel>>.value(
+      value: DataBase().upcomingEvents(
+        FirebaseAuth.instance.currentUser!.uid,
+      ),
+      initialData: const [],
+      child: const EventUpcomingScreen(),
+    ),
+    StreamProvider<List<EventModel>>.value(
+      value: DataBase().registeredEvents(
+        FirebaseAuth.instance.currentUser!.uid,
+      ),
+      initialData: const [],
+      child: const EventRegisteredScreen(),
+    ),
+    const FavEventScreen(),
   ];
 
   final List<Color> _navColors = const <Color>[
@@ -33,195 +52,169 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     Colors.pinkAccent
   ];
 
-  DocumentSnapshot? documentSnapshot;
-  bool _isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    Future<DocumentSnapshot<Object?>?> documentSnapshot = getUserData();
-    documentSnapshot.then(
-      (value) => {
-        if (value != null)
-          {
-            setState(() {
-              this.documentSnapshot = value;
-              _isLoading = false;
-            })
-          }
-        else
-          {
-            setState(() {
-              _isLoading = true;
-            })
-          }
-      },
-    );
-    onItemTap(1);
-  }
-
   void onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
-  void _drawerOpen() {
-    setState(() {
-      xOffset = 230;
-      yOffset = 150;
-      scaleFactor = 0.7;
-      isDrawerOpen = true;
-    });
-  }
-
-  void _drawerClose() {
-    setState(() {
-      xOffset = 0;
-      yOffset = 0;
-      scaleFactor = 1;
-      isDrawerOpen = false;
-    });
-  }
-
-  double xOffset = 0;
-  double yOffset = 0;
-  double scaleFactor = 1;
-
-  bool isDrawerOpen = false;
-
   @override
   Widget build(BuildContext context) {
-    return _isLoading
-        ? const LoadingDialog()
-        : GestureDetector(
-            onTap: () {
-              _drawerClose();
-            },
-            child: AnimatedContainer(
-              decoration: BoxDecoration(
-                color: secondaryColor,
-                borderRadius: isDrawerOpen
-                    ? BorderRadius.circular(40)
-                    : BorderRadius.circular(0),
+    UserDataModel userData = Provider.of<UserDataModel>(context);
+    return Scaffold(
+      backgroundColor: secondaryColor,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: darkColor),
+        toolbarHeight: 100,
+        backgroundColor: secondaryColor,
+        elevation: 0,
+        actions: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const Text(
+                "Welcome",
+                style: TextStyle(
+                  color: darkColor,
+                ),
               ),
-              transform: Matrix4.translationValues(
-                xOffset,
-                yOffset,
-                0,
-              )..scale(scaleFactor),
-              curve: Curves.easeIn,
-              duration: const Duration(milliseconds: 250),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Container(
-                    color: secondaryColor,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0,
-                        vertical: 30.0,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          isDrawerOpen
-                              ? IconButton(
-                                  onPressed: () {
-                                    _drawerClose();
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_back_ios,
-                                    color: darkColor,
-                                  ),
-                                )
-                              : IconButton(
-                                  onPressed: () {
-                                    _drawerOpen();
-                                  },
-                                  icon: const Icon(
-                                    Icons.menu,
-                                    color: darkColor,
-                                  ),
-                                ),
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  const Text(
-                                    "Welcome",
-                                    style: TextStyle(
-                                      color: darkColor,
-                                    ),
-                                  ),
-                                  Text(
-                                    documentSnapshot?.get("fName"),
-                                    style: const TextStyle(
-                                      color: darkColor,
-                                      fontFamily: 'Pacifico',
-                                      fontSize: 16,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Image.asset(
-                                "images/male_avatar.png",
-                                width: 60,
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Scaffold(
-                      backgroundColor: Colors.transparent,
-                      body: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
-                        ),
-                        child: Container(
-                          color: primaryColor,
-                          child: _widgetOptions.elementAt(
-                            _selectedIndex,
-                          ),
+              userData.fName == null
+                  ? Shimmer.fromColors(
+                      baseColor: Colors.black26,
+                      highlightColor: Colors.black12,
+                      child: Container(
+                        width: 100,
+                        height: 20,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      bottomNavigationBar: CurvedNavigationBar(
+                    )
+                  : Text(
+                      userData.fName!,
+                      style: const TextStyle(
                         color: darkColor,
-                        height: 70,
-                        backgroundColor: primaryColor,
-                        buttonBackgroundColor: _navColors[_selectedIndex],
-                        items: const [
-                          Icon(
-                            Icons.add,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                          Icon(
-                            Icons.check,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                          Icon(
-                            CupertinoIcons.heart_fill,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                        ],
-                        onTap: onItemTap,
-                        index: _selectedIndex,
+                        fontFamily: 'Pacifico',
+                        fontSize: 16,
                       ),
                     ),
-                  ),
-                ],
+            ],
+          ),
+          Image.asset(
+            "images/male_avatar.png",
+            width: 60,
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        backgroundColor: darkColor,
+        child: Column(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                ),
+                child: Image.asset("images/logo.png"),
               ),
             ),
-          );
+            DrawerListTile(
+              onPressed: () {
+                Navigator.pushNamed(context, MembersInfoScreen.id);
+              },
+              title: "Club Members",
+            ),
+            DrawerListTile(
+              onPressed: () {},
+              title: "About Us",
+            ),
+            DrawerListTile(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UserProfile(
+                      userData: userData,
+                    ),
+                  ),
+                );
+              },
+              title: "Profile",
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, bottom: 30),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      FirebaseAuth.instance.signOut();
+                      Navigator.pushReplacementNamed(context, DesicionTree.id);
+                    },
+                    child: const Text(
+                      "Log out",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    style: TextButton.styleFrom(
+                      primary: Colors.redAccent,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                ),
+                child: Container(
+                  color: primaryColor,
+                  child: _widgetOptions.elementAt(
+                    _selectedIndex,
+                  ),
+                ),
+              ),
+              bottomNavigationBar: CurvedNavigationBar(
+                color: darkColor,
+                height: 70,
+                backgroundColor: primaryColor,
+                buttonBackgroundColor: _navColors[_selectedIndex],
+                items: const [
+                  Icon(
+                    Icons.add,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                  Icon(
+                    Icons.check,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                  Icon(
+                    CupertinoIcons.heart_fill,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                ],
+                onTap: onItemTap,
+                index: _selectedIndex,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

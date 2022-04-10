@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../styles/colors.dart';
-import '../widgets/loading_dialog.dart';
+import '../../styles/colors.dart';
+import '../../widgets/loading_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../widgets/member_info_container.dart';
+import '../../widgets/member_info_container.dart';
 
 // ignore: must_be_immutable
 class MembersCompleteInfo extends StatefulWidget {

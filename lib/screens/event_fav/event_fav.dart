@@ -1,9 +1,6 @@
 import 'package:careerclub/styles/colors.dart';
-import 'package:careerclub/widgets/no_event.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/event_card.dart';
 
 class FavEventScreen extends StatefulWidget {
   const FavEventScreen({Key? key}) : super(key: key);
@@ -56,38 +53,11 @@ class _FavEventScreenState extends State<FavEventScreen> {
                       viewportFraction: 0.75,
                       enlargeCenterPage: true,
                     ),
-                    items: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 50.0,
-                          top: 40,
-                        ),
-                        child: EventsCard(
-                          eventName: "Event 1",
-                          desc: "This is an Event",
-                          register: () {},
-                          knowMore: () {},
-                          isReg: true,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 50.0,
-                          top: 40,
-                        ),
-                        child: EventsCard(
-                          eventName: "Event 2",
-                          desc: "This is an Event",
-                          register: () {},
-                          knowMore: () {},
-                          isReg: true,
-                        ),
-                      ),
-                    ],
+                    items: const [],
                   ),
                 )
-              : NoEventsWidget(
-                  eventName: eventName,
+              : const Text(
+                  "No Events",
                 ),
         ],
       ),

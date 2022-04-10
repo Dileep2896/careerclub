@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 FirebaseAuth auth = FirebaseAuth.instance;
 FirebaseFirestore store = FirebaseFirestore.instance;
@@ -66,7 +67,7 @@ Future<String?> login(
   }
 }
 
-Future<DocumentSnapshot<Object?>?> getUserData() async {
+Future<DocumentSnapshot?> getUserData() async {
   String uid = FirebaseAuth.instance.currentUser!.uid;
   DocumentSnapshot? documentSnapshots;
   await FirebaseFirestore.instance
@@ -83,4 +84,26 @@ Future<DocumentSnapshot<Object?>?> getUserData() async {
     }
   });
   return documentSnapshots;
+}
+
+Future<String> downloadURL() async {
+  String downloadURL = await firebase_storage.FirebaseStorage.instance
+      .ref('test/buymeacoffee.jpeg')
+      .getDownloadURL();
+
+  return downloadURL;
+}
+
+Future getEventsData(String uid) async {
+  QuerySnapshot snapshot = await FirebaseFirestore.instance
+      .collection('Events')
+      .where("registered", isNotEqualTo: [uid]).get();
+  return snapshot.docs;
+}
+
+Future getRegEventsData(String uid) async {
+  QuerySnapshot snapshot = await FirebaseFirestore.instance
+      .collection('Events')
+      .where("registered", isEqualTo: [uid]).get();
+  return snapshot.docs;
 }

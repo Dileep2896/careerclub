@@ -1,14 +1,14 @@
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:careerclub/utils/drawer_controller.dart';
 import 'package:careerclub/widgets/loading_dialog.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
-import '../models/constants.dart';
-import '../styles/colors.dart';
-import '../utils/user_actions.dart';
-import '../widgets/rounded_button.dart';
+import '../../models/constants.dart';
+import '../../styles/colors.dart';
+import '../../utils/bottom_navigation.dart';
+import '../../utils/user_actions.dart';
+import '../../widgets/rounded_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -183,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           loginMessage.then((value) {
                             if (value == null) {
                               Navigator.pushReplacementNamed(
-                                  context, DrawerControllerScreen.id);
+                                  context, BottomNavigationScreen.id);
                               setState(() {
                                 isLoading = false;
                                 isLoginError = false;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../styles/colors.dart';
-import '../widgets/no_event.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -23,12 +22,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
       ),
       backgroundColor: Colors.grey.shade200,
-      body: SafeArea(
-        child: Center(
-          child: NoEventsWidget(
-            eventName: "Settings",
-          ),
-        ),
+      body: const SafeArea(
+        child: Center(),
       ),
     );
   }

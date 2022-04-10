@@ -1,5 +1,5 @@
-import 'package:careerclub/screens/members.dart';
-import 'package:careerclub/screens/profile.dart';
+import 'package:careerclub/screens/members_and_about/members.dart';
+import 'package:careerclub/screens/members_and_about/profile.dart';
 import 'package:careerclub/screens/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -61,4 +61,19 @@ List<Map> drawerItems = [
   },
 ];
 
-List<Map> tempCardInfo = [];
+Map<int, String> periods = {
+  1: "08:30 - 09:30",
+  2: "9:30 - 10:30",
+  3: "10:50 - 11:50",
+  4: "11:50 - 12:50",
+  5: "01:40 - 02:35",
+  6: "02:35 - 03:30",
+  7: "03:30 - 04:25"
+};
+
+Map<String, String> teachersData = {
+  'teacher1.reva.edu.in': 'teacher 1',
+  'teacher2.reva.edu.in': 'teacher 2',
+  'teacher3.reva.edu.in': 'teacher 3',
+  'teacher4.reva.edu.in': 'teacher 4',
+};
